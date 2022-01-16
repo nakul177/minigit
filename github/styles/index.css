@@ -1,0 +1,70 @@
+body{
+    margin: 0px;
+}
+#navbar{
+
+
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#logo img{
+
+    width: 30%;
+    padding: 9px;
+    padding-top: 8px;
+}
+
+#profile-img{
+
+width:50px ;
+border-radius: 50%;
+height: 50px;
+padding-top: 5px;
+
+}
+
+#list li{
+
+    display: inline;
+    margin-left: 2%;
+    
+}
+#search{
+
+    width: 10%;
+    padding: 12px;
+    padding-top: 18px;
+    
+}
+
+#logo{
+
+    width: 10%;
+    text-align: right;
+}
+#options{
+
+    width: 75%;
+}
+#profile{
+
+    width: 5%;
+}
+a{
+    text-decoration: 0;
+    color: white;
+}
+#repos{
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 5px;
+    padding-left: 10px;
+  
+}
+#search_input{
+    border: 1px solid rgb(10, 10, 10);
+    background-color: rgb(255, 255, 255);
+    margin
+}

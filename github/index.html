@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+   <div id="nav"></div>
+   <div id="main">
+       <button id="repo_btn">Get Repository</button>
+       <div id="repo" ></div>
+   </div>
+</body>
+</html>
+<script type="module">
+     import navbar from "./components/navbar.js"
+
+     import getUser from "./scripts/getUser.js"
+
+    let nav = document.getElementById("nav")
+    
+    nav.innerHTML=navbar()
+    var response;
+    
+
+    let input=document.getElementById("search-input")
+    input.addEventListener("keypress",searchUser)
+
+    let btn=document.getElementById("repo_btn")
+    btn.addEventListener("click",getuserRepo)
+
+    async function searchUser(event){
+        if(event.key === "Enter"){
+
+            let querry=input.value
+
+           response= await getUser(querry)
+           console.log(response);
+
+           let { avatar_url } = response
+
+           document.getElementById("profile-img").src=avatar_url
+           
+           
+        }
+
+    }
+    async function getuserRepo(){
+        let res=await fetch(response.repos_url)
+        let data=await res.json()
+        let repo=document.getElementById("repo")
+        showrepo(data,repo);
+        console.log(data);
+    }
+   function showrepo(arr,location){
+        arr.forEach(({name,owner,full_name,id,git_url})=>{
+        let div=document.createElement("div")
+        div.setAttribute("id","repos")
+
+        let reponame=document.createElement("p")
+        reponame.innerText=`Repo name:-${name}`
+
+        let Owner=document.createElement("p")
+        Owner.innerHTML=`Owner's name:- ${full_name}`
+
+        let id_name=document.createElement("p")
+        id_name.innerHTML=`Repo id:- ${id}`
+
+        let info=document.createElement("p")
+        info.innerHTML=`Log In info:- ${owner.login}`
+
+        let log=document.createElement("p")
+        log.innerHTML=`Log In id:- ${owner.id}`
+
+        let link = document.createElement("p")
+        link.innerHTML=`GIT link - ${git_url}`
+
+        div.append(reponame,id_name,Owner,info,log,link)
+        location.append(div)
+
+        })
+
+    }
+</script>
